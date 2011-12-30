@@ -3,8 +3,8 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2010-01-03.
-" @Last Change: 2010-08-14.
-" @Revision:    8
+" @Last Change: 2011-12-29.
+" @Revision:    16
 
 let s:save_cpo = &cpo
 set cpo&vim
@@ -99,16 +99,16 @@ function! cmdlinehelp#View() "{{{3
 
     if !empty(tag)
         let tags = &l:tags
-        let &tags = g:cmdlinehelp#tags
+        let &l:tags = g:cmdlinehelp#tags
         try
             let tag = printf(fmt, tag)
             let tag1 = s:PrefixTag(tag)
-            " TLogVAR tag1
+            " TLogVAR 1, tag, tag1
             if empty(tag1) && !s:TagExists(tag)
                 if tag[-1 : -1] == '!'
                     let tagm = tag[0 : -2]
                     let tag1 = s:PrefixTag(tagm)
-                    " TLogVAR tag1
+                    " TLogVAR tagm, tag1
                     if empty(tag1)
                         let tag1 = s:TableGet(tag, '')
                         " TLogVAR tag1
@@ -123,13 +123,14 @@ function! cmdlinehelp#View() "{{{3
                     endif
                 endif
             endif
-            " TLogVAR tag, tag1
+            " TLogVAR 2, tag, tag1
             let tag0 = tag
             if !empty(tag1)
                 let tag = s:TableGet(tag1, tag1)
             else
                 let tag = s:TableGet(tag, tag)
             endif
+            " TLogVAR 3, tag
             if tag[0:0] == '*'
                 let [s:buffer, s:pos] = call(tag[1 : -1], [s:buffer, s:pos, tag0])
             else
