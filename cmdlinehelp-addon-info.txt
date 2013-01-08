@@ -1,9 +1,0 @@
-{
-  "name" : "cmdlinehelp",
-  "version" : "dev",
-  "author" : "Tom Link <micathom at gmail com>",
-  "maintainer" : "Tom Link <micathom at gmail com>",
-  "repository" : {"type": "git", "url": "git://github.com/tomtom/cmdlinehelp_vim.git"},
-  "dependencies" : {},
-  "description" : "Display help on the command in the command line"
-}
